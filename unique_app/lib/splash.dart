@@ -51,9 +51,6 @@ Future<bool> _mookChechForSession() async{
 }
 
 void _nagigateToHome(){
-  Navigator.of(context).pushReplacement(
-    MaterialPageRoute(builder: (BuildContext context)=> Login())
-  );
 }
 
 
