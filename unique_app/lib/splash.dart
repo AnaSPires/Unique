@@ -46,11 +46,14 @@ void initState(){
 
 Future<bool> _mookChechForSession() async{
   await Future.delayed(Duration(milliseconds: 5000),(){});
-
+  _nagigateToHome();
   return true;
 }
 
 void _nagigateToHome(){
+  Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (BuildContext context)=> Login())
+  );
 }
 
 
