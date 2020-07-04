@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:uniqueapp/login.dart';
+import 'package:uniqueapp/menu.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -52,7 +52,7 @@ Future<bool> _mookChechForSession() async{
 
 void _nagigateToHome(){
   Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (BuildContext context)=> Login())
+      MaterialPageRoute(builder: (BuildContext context)=> Menu())
   );
 }
 
