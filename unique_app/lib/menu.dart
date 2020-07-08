@@ -57,13 +57,13 @@ class _MenuState extends State<Menu> {
                         decoration: myBoxDecoration2(Colors.white),
                       child:
                       Icon(
-                        Icons.person,
+                        Icons.home,
                         color: Colors.black,
                         size: 60.0,))),
                       Padding(
                   padding: EdgeInsets.only(top:25.0),
                 child:Text(
-                  "Login",
+                  "Home",
                   style: TextStyle(fontSize: 20.5, color: Colors.white,
                       decoration: TextDecoration.none,),
                 ),
@@ -99,13 +99,13 @@ class _MenuState extends State<Menu> {
               padding: const EdgeInsets.all(10.0),
               decoration: myBoxDecoration2(Colors.white),
               child:Icon(
-              Icons.account_box,
+              Icons.equalizer,
               color: Colors.black,
               size: 60.0,))),
               Padding(
                 padding: EdgeInsets.only(top:25.0),
                 child:Text(
-    "Cadastro",
+    "Estatísticas",
     style: TextStyle(fontSize: 20.5, color: Colors.white,
     decoration: TextDecoration.none,),
     ),)
@@ -139,14 +139,14 @@ class _MenuState extends State<Menu> {
                                         padding: const EdgeInsets.all(10.0),
                                         decoration: myBoxDecoration2(Colors.white),
                                         child:Icon(
-                                          Icons.home,
+                                          Icons.person,
                                           color: Colors.black,
                                           size: 60.0,))),
                                   Padding(
                                       padding: EdgeInsets.only(top:25.0),
                                       child:
                                     Text(
-                                        "Home",
+                                        "Perfil",
                                         style: TextStyle(fontSize: 20.5, color: Colors.white,
                                           decoration: TextDecoration.none,),
                                       ),)

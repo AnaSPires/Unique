@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:uniqueapp/menu.dart';
+import 'package:uniqueapp/entrada.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -52,7 +53,7 @@ Future<bool> _mookChechForSession() async{
 
 void _nagigateToHome(){
   Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (BuildContext context)=> Menu())
+      MaterialPageRoute(builder: (BuildContext context)=> Entrada())
   );
 }
 
