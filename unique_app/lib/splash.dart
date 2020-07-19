@@ -40,18 +40,18 @@ void initState(){
   _mookChechForSession().then(
       (status){
         if(status) {
-          _nagigateToHome();
+          _navigateToEntrada();
         }
       });
 }
 
 Future<bool> _mookChechForSession() async{
   await Future.delayed(Duration(milliseconds: 5000),(){});
-  _nagigateToHome();
+  _navigateToEntrada();
   return true;
 }
 
-void _nagigateToHome(){
+void _navigateToEntrada(){
   Navigator.of(context).pushReplacement(
       MaterialPageRoute(builder: (BuildContext context)=> Entrada())
   );

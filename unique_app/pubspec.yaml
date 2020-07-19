@@ -54,6 +54,9 @@ flutter:
     - images/color.png
     - images/brain.PNG
     - images/img1.jpg
+    - images/login_up.png
+    - images/login_down.png
+    - images/login_icon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

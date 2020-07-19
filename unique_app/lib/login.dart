@@ -8,15 +8,15 @@ import 'package:uniqueapp/menu.dart';
 import 'package:uniqueapp/login.dart';
 
 void main() {
-  runApp(MaterialApp(title: "Unique", home: Entrada()));
+  runApp(MaterialApp(title: "Login", home: Login()));
 }
 
-class Entrada extends StatefulWidget {
+class Login extends StatefulWidget {
   @override
-  _EntradaState createState() => _EntradaState();
+  _LoginState createState() => _LoginState();
 }
 
-class _EntradaState extends State<Entrada> {
+class _LoginState extends State<Login> {
   //variaveis
   //codigo
 //
@@ -33,53 +33,67 @@ class _EntradaState extends State<Entrada> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Scaffold(
+    body: Container(
         color: Colors.white,
         alignment: Alignment(0.0, 0.0),
         padding: EdgeInsets.only(left: 0.0, right: 0.0),
         child: Stack(children: <Widget>[
           Container(
-              alignment: Alignment(0.0, -1.2),
-              child: Image.asset("images/color.png", height: 290.0)),
+              alignment: Alignment(1.5, -1.0),
+              width: 800.0,
+              child: Image.asset("images/login_up.png", width: 890.0)),
           Padding(
-            padding: EdgeInsets.only(top:160.0, left: 100.0, right: 100.0),
+            padding: EdgeInsets.only(top:175.0, left: 140.0, right: 140.0),
+            child:
+
+            Container(
+                child:
+                Text(
+                  "Login", style: TextStyle(color:Colors.indigo, decoration: TextDecoration.none, fontSize: 40.0),
+
+                )),),
+          Padding(
+            padding: EdgeInsets.only(top:90.0, left: 0.0, right: 0.0),
             child:
 
             Container(
                 child:
                 Image.asset(
-                  "images/brain.PNG",
-                  width: 220.0,
+                  "images/login_icon.png",
+                  width: 590.0,
                 )),),
           Padding(
-            padding: EdgeInsets.only(top:350.0, left: 90.0, right: 90.0),
+            padding: EdgeInsets.only(top:360.0, left: 80.0, right: 80.0),
             child:
 
-          Container(
-            color: Colors.white,
-            child:
-            Image.asset(
-              "images/logo.png",
-              width: 240.0,
-            )),),
+            Column(
+
+                children:<Widget>[
+                  TextFormField(
+                decoration: InputDecoration(
+                labelText: 'Enter your username'),
+                  )])),
 
           Padding(
             padding: EdgeInsets.only(top:520.0, left: 89.21, right: 89.21),
             child:
 
             RaisedButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(28.0),
-                  side: BorderSide(color: Colors.pink)),
-              onPressed: () {_navigateToLogin();},
-              color: Colors.pink,
-              textColor: Colors.white,
-              child: Padding(
-                padding: EdgeInsets.only(left:60.0, right: 60.0,top: 10.0,bottom: 10.0),
-                child:
-                Text("Login".toUpperCase(),
-                  style: TextStyle(fontSize: 28)),
-            )),),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(28.0),
+                    side: BorderSide(color: Colors.pink)),
+                onPressed: () {
+                  _navigateToLogin();
+                },
+                color: Colors.pink,
+                textColor: Colors.white,
+                child: Padding(
+                  padding: EdgeInsets.only(left:60.0, right: 60.0,top: 10.0,bottom: 10.0),
+                  child:
+                  Text("Login".toUpperCase(),
+                      style: TextStyle(fontSize: 28)),
+                )),),
           Container(
             alignment: Alignment(0.0,1.22),
             padding: EdgeInsets.only(left: 0.0, right: 0.0),
@@ -98,12 +112,12 @@ class _EntradaState extends State<Entrada> {
                   Text("Cadastro".toUpperCase(),
                       style: TextStyle(fontSize: 28)),
                 )),),
-        ]));
+        ])));
 
   }
   void _navigateToLogin(){
     Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (BuildContext context)=> Login())
+        MaterialPageRoute(builder: (BuildContext context)=> Menu())
     );
   }
 }
