@@ -1,17 +1,11 @@
 import 'dart:async';
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:uniqueapp/menu.dart';
 
 void main() {
-  runApp(MaterialApp(
-      title: "Home",
-      home: Home()
-  ));
+  runApp(MaterialApp(title: "Home", home: Home()));
 }
-
-
 
 class Home extends StatefulWidget {
   @override
@@ -27,13 +21,11 @@ class _HomeState extends State<Home> {
     return Container(
         color: Colors.white,
         child:
-        Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-          "Aqui terá uma home", style: TextStyle(fontSize: 20.0),
-        )])
-    );
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+          Text(
+            "Aqui terá uma home",
+            style: TextStyle(fontSize: 20.0),
+          )
+        ]));
   }
 }
-
