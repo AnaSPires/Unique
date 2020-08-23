@@ -9,6 +9,7 @@ import 'package:flutter/rendering.dart';
 // ignore: unused_import
 import 'package:uniqueapp/menu.dart';
 import 'package:uniqueapp/login.dart';
+import 'package:uniqueapp/cadastro.dart';
 
 void main() {
   runApp(MaterialApp(title: "Unique", home: Entrada()));
@@ -86,7 +87,9 @@ class _EntradaState extends State<Entrada> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(90.0),
                     side: BorderSide(color: Colors.orange)),
-                onPressed: () {},
+                onPressed: () {
+                  _navigateToCadastro();
+                },
                 color: Colors.orange,
                 textColor: Colors.white,
                 padding: EdgeInsets.only(top: 0.0, left: 0.0, right: 0.0),
@@ -103,5 +106,10 @@ class _EntradaState extends State<Entrada> {
   void _navigateToLogin() {
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (BuildContext context) => Login()));
+  }
+
+  void _navigateToCadastro() {
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (BuildContext context) => Cadastro()));
   }
 }

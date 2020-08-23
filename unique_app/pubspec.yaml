@@ -57,6 +57,8 @@ flutter:
     - images/login_up.png
     - images/login_down.png
     - images/login_icon.png
+    - images/cad_up.png
+    - images/cad_down.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
