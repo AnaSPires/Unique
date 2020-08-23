@@ -2,7 +2,8 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:uniqueapp/menu.dart';
-import './BD//server.dart' as server;
+import './index_setter.dart';
+import 'BD/Controllers/resp_controller.dart';
 
 void main() {
   runApp(MaterialApp(title: "Home", home: Home()));
@@ -17,8 +18,11 @@ class _HomeState extends State<Home> {
   //variaveis
   //codigo
 
+  var myCurrentIndex;
+
   @override
   Widget build(BuildContext context) {
+    setCurrentPageIndex();
     return Container(
         color: Colors.white,
         child:
@@ -32,5 +36,9 @@ class _HomeState extends State<Home> {
             style: TextStyle(fontSize: 20.0),
           )
         ]));
+  }
+
+  setCurrentPageIndex() {
+    RouteSetter().setCurrentRoute('0');
   }
 }
