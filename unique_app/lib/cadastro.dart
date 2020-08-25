@@ -37,9 +37,43 @@ class DecoratedTabBar extends StatelessWidget implements PreferredSizeWidget {
   }
 }
 
-class _CadastroState extends State<Cadastro> {
+class _CadastroState extends State<Cadastro> with SingleTickerProviderStateMixin{
   //variaveis
   //codigo
+  final List<Tab> myTabs = <Tab>[
+    Tab(text: 'LEFT',),
+    Tab(text: 'RIGHT'),
+  ];
+//  final List<Tab> myTabs = <Tab>[
+//  Tab(
+//    text: "oi",
+////  child:
+////  Text("Paciente",style: TextStyle(fontSize: 24.0),)
+//  ),
+//  Tab(
+//      text:"oie",
+////  child:
+////  Text('Responsável', style: TextStyle(fontSize: 24.0))),
+//  )];
+
+  TabController _tabController;
+
+  var ariMeuAmor = Color(0xCC0090FF);
+  var lindaDoMeuCoracao = Color(0xCC00FF7C);
+  var loveusomuch = Color(0x800090FF);
+  var vemcavem = Color(0x8000FF7C);
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(vsync: this, length: myTabs.length);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,42 +83,119 @@ class _CadastroState extends State<Cadastro> {
             color: Colors.white,
             child: Stack(children: <Widget>[
 
-              Padding(
-                padding: EdgeInsets.only(top:30.0, left: 215.2, right: 15.2),
-                child:
-
-                Container(
-                    child:
-                    Text(
-                      "Cadastro", style: TextStyle(color:Colors.white, decoration: TextDecoration.none, fontSize: 40.0,fontWeight: FontWeight.bold),
-
-                    )),),
 
    Padding(
      padding: EdgeInsets.only(top: 0.0),
      child:
      DefaultTabController(
        length: 2,
-       child: Scaffold(
-         appBar:  AppBar(
-           bottom: DecoratedTabBar(
+       child: Padding(
+         padding: EdgeInsets.only(top:200.0,left:20.0,right: 20.0),
+         child:Scaffold(
+             resizeToAvoidBottomInset:false,
+         appBar: DecoratedTabBar(
              tabBar: TabBar(
-             tabs:[
-               Tab(
-                 child:
-                 Text("Paciente",style: TextStyle(fontSize: 24.0),),),
-               Tab(
-                   child:
-               Text('Responsável', style: TextStyle(fontSize: 24.0))),
-             ],),
+             tabs: myTabs,
+             controller: _tabController,
+             indicatorPadding: EdgeInsets.only(top:150.0,bottom:150.0),
+             indicator: BoxDecoration(borderRadius: BorderRadius.circular(28.0),
+               gradient: LinearGradient(
+               begin: Alignment.topRight,
+               end: Alignment.bottomLeft,
+               colors: [lindaDoMeuCoracao, ariMeuAmor]),),
+             indicatorSize: TabBarIndicatorSize.tab,),
              decoration: BoxDecoration(
                gradient: LinearGradient(
                    begin: Alignment.topRight,
                    end: Alignment.bottomLeft,
-                   colors: [Colors.deepPurple, Colors.indigoAccent]),
+                   colors: [loveusomuch, vemcavem],),
                borderRadius: BorderRadius.circular(28.0),
              ),
            ),
+           body: TabBarView(
+             children: <Widget> [
+               Padding(
+                 padding: EdgeInsets.only(top:20.0,bottom: 50.0),
+                   child:Container(
+                 decoration:BoxDecoration(
+                   borderRadius: BorderRadius.circular(28.0),
+                   gradient: LinearGradient(
+                       begin: Alignment.topRight,
+                       end: Alignment.bottomLeft,
+                       colors: [lindaDoMeuCoracao, ariMeuAmor]),),
+                     child: Stack(children: <Widget>[
+
+                       Padding(
+                         padding: EdgeInsets.only(top:25.0, left: 60.0, right: 60.0),
+                         child:
+                         Container(
+                             width: 242.0,
+                             height:60.0,
+                             decoration: BoxDecoration(
+                                 shape:BoxShape.rectangle,
+                                 border: Border.all(
+                                     width: 5.0,
+                                     color: Colors.white,
+                                 ),
+                                 borderRadius: BorderRadius.all(
+                                     Radius.circular(38.0) //                 <--- border radius here
+                                 ))
+                         ),
+                       ),
+
+                       Padding(
+                           padding: EdgeInsets.only(top:30.0, left: 90.0, right: 100.0),
+                           child:
+
+                           Column(
+                               children:<Widget>[
+                                 TextFormField(
+                                   style:TextStyle(
+                                     fontSize: 20.0,
+                                     height: 1.0,
+                                   ),
+                                   decoration: InputDecoration(
+                                       border: InputBorder.none,contentPadding: EdgeInsets.all(5.0),
+                                       labelText: 'Nome',
+                                       labelStyle: TextStyle(fontSize: 22.0,height: 1.0,color: Colors.white,fontWeight: FontWeight.bold)),
+                                 )])),
+                       Padding(
+                         padding: EdgeInsets.only(top:95.0, left: 60.0, right: 60.0),
+                         child:
+                         Container(
+                             width: 242.0,
+                             height:60.0,
+                             decoration: BoxDecoration(
+                                 shape:BoxShape.rectangle,
+                                 border: Border.all(
+                                   width: 5.0,
+                                   color: Colors.white,
+                                 ),
+                                 borderRadius: BorderRadius.all(
+                                     Radius.circular(38.0) //                 <--- border radius here
+                                 ))
+                         ),
+                       ),
+
+                       Padding(
+                           padding: EdgeInsets.only(top:100.0, left: 90.0, right: 100.0),
+                           child:
+
+                           Column(
+                               children:<Widget>[
+                                 TextFormField(
+                                   style:TextStyle(
+                                     fontSize: 20.0,
+                                     height: 1.0,
+                                   ),
+                                   decoration: InputDecoration(
+                                       border: InputBorder.none,contentPadding: EdgeInsets.all(5.0),
+                                       labelText: 'Sobrenome',
+                                       labelStyle: TextStyle(fontSize: 22.0,height: 1.0,color: Colors.white,fontWeight: FontWeight.bold)),
+                                 )])),
+                      ]))),
+               Stack(children:[Text("tchau")])
+                ])
          ),
        ),
      ),
@@ -100,32 +211,23 @@ class _CadastroState extends State<Cadastro> {
       ),
 
               Padding(
-                padding: EdgeInsets.only(top:535.0, left: 118.71, right: 118.71),
+                padding: EdgeInsets.only(top:20.0),
                 child:
                 Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: [Colors.deepPurple, Colors.indigoAccent]),
-                    borderRadius: BorderRadius.circular(28.0),
-                  ),
-                  child:
-                  RaisedButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(28.0),
-                          side: BorderSide(color: Colors.transparent)),
-                      onPressed: () {
-                        _navigateToMenu();
-                      },
-                      color: Colors.transparent,
-                      textColor: Colors.white,
-                      child: Padding(
-                        padding: EdgeInsets.only(left:30.0, right: 30.0,top: 10.0,bottom: 10.0),
-                        child:
-                        Text("Bora lá",
-                            style: TextStyle(fontSize: 26)),
-                      )),),),
+                    padding: EdgeInsets.only(left: 10.0),
+                    alignment: Alignment(0.1, -1.1),
+                    width: 2000.0,
+                    child: Image.asset("images/cad_up.png", width: 2000.0)),),
+              Padding(
+                padding: EdgeInsets.only(top:30.0, left: 215.2, right: 15.2),
+                child:
+
+                Container(
+                    child:
+                    Text(
+                      "Cadastro", style: TextStyle(color:Colors.white, decoration: TextDecoration.none, fontSize: 40.0,fontWeight: FontWeight.bold),
+
+                    )),),
               Padding(
                   padding: EdgeInsets.only(top:600.0, left: 116.21, right: 116.21),
                   child:
