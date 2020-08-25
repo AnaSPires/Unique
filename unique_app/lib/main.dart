@@ -8,18 +8,18 @@ import 'package:uniqueapp/entrada.dart';
 void main() {
   runApp(MaterialApp(
       title: "Unique",
-      home: Splash()
+      home: Main()
   ));
 }
 
 
 
-class Splash extends StatefulWidget {
+class Main extends StatefulWidget {
   @override
-  _SplashState createState() => _SplashState();
+  _MainState createState() => _MainState();
 }
 
-class _SplashState extends State<Splash> {
+class _MainState extends State<Main> {
   //variaveis
   //codigo
 //
