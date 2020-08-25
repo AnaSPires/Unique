@@ -47,7 +47,7 @@
         },
         {
             "name": "Dart",
-            "program": "unique_app/lib/splash.dart",
+            "program": "unique_app/lib/main.dart",
             "request": "launch",
             "type": "dart"
         }

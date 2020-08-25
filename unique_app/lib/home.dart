@@ -8,7 +8,7 @@ import 'package:uniqueapp/menu.dart';
 import './index_setter.dart';
 import 'package:convert/convert.dart';
 import 'package:http/http.dart' as http;
-import 'BD/server.dart' as myServer;
+import 'BD/server.dart';
 
 void main() {
   runApp(MaterialApp(title: "Home", home: Home()));
@@ -50,7 +50,7 @@ class _HomeState extends State<Home> {
                         return new Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              new Text(snapshot.data[index].myObj['nome'],
+                              new Text(snapshot.data[index].nome,
                                   style: new TextStyle(
                                       fontWeight: FontWeight.bold)),
                               new Divider()
@@ -62,24 +62,22 @@ class _HomeState extends State<Home> {
   }
 
   Future<List<Responsavel>> getData() async {
-    final response = await http.get('http://177.194.125.214/32:8000/resp');
-    print(response.body);
-    List responseJson = json.decode(response.body);
-    List<Responsavel> respList = createRespList(responseJson);
-    myData += respList.toString() + "ue";
+    MyServer myServer = new MyServer();
+    //final response = await http.get('http://177.194.125.214/32:8000/resp');
+    List listResp = myServer.getData("Responsavel");
+    List<Responsavel> respList = createRespList(listResp);
+    for (int i = 0; i < respList.length; i++) myData += respList[i].toString();
   }
 
   List<Responsavel> createRespList(List data) {
     List<Responsavel> myList = new List();
     for (int i = 0; i < data.length; i++) {
       String nome = data[i]["nome"];
-      /* String nome = data[i]["nome"];
       String email = data[i]["email"];
       String celular = data[i]["celular"];
       int id = data[i]["id"];
       int idCrianca = data[i]["id_crianca"];
-      Responsavel movie = new Responsavel(id, nome, email, celular, idCrianca);*/
-      Responsavel resp = new Responsavel(nome);
+      Responsavel resp = new Responsavel(id, nome, email, celular, idCrianca);
       myList.add(resp);
     }
 

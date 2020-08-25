@@ -1,18 +1,163 @@
 import 'dart:io';
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:mongo_dart/mongo_dart.dart';
 import 'package:http_server/http_server.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:uniqueapp/BD/models/resp_model.dart';
 
 import '../BD/dart_mongo.dart' as dart_mongo;
 
-main(List<String> arguments) async {
-  var server = await HttpServer.bind('177.194.125.214/32', 8080);
-  Db db = Db("mongodb://177.194.125.214/32:27017/Unique");
-  await db.open();
+//MAIN PARA TESTE
+/*main(List<String> args) {
+  print("Preparando...");
+  final myServer = new MyServer();
+  try {
+    print("Server criado");
+    final myData = myServer.getData("Responsavel");
 
+    print("Pegou dados");
+
+    print(myData.toString());
+    print("Fechou conexão");
+  } catch (e) {
+    print("Deu erro!");
+    print(e);
+  }
+}*/
+
+class MyServer {
+  var server;
+  //Db db = Db("mongodb://localhost:27017/Unique");
+  Db db;
+  DbCollection myColl;
+
+  MyServer() {
+    db = Db(
+        "mongodb+srv://arianepaulabarros:raizesaereas18173@cluster-unique-shard-00-00.cfl1u.mongodb.net:27017,cluster-unique-shard-00-01.cfl1u.mongodb.net:27017,cluster-unique-shard-00-02.cfl1u.mongodb.net:27017/Unique?ssl=true&replicaSet=atlas-j4mn6c-shard-0&authSource=admin&retryWrites=true&w=majority");
+   
+   
+    //    .authSourceDb;
+    // Db("mongodb://localhost:27017/Unique");
+  }
+
+  prepareConnection() async {
+    //server = await HttpServer.bind('127.0.0.1', 8080);
+    await db.open();
+    print('Connected to database');
+  }
+
+  getData(String collName) async {
+    this.prepareConnection();
+    myColl = db.collection(collName);
+    var resp = await myColl.find().toList();
+    //List<Responsavel> myList = createRespList(resp);
+
+    //var myRespS = myList.first.toString();
+    db.close();
+    return resp;
+  }
+
+/*
+  List<Responsavel> createRespList(List data) {
+    List<Responsavel> myList = new List();
+    for (int i = 0; i < data.length; i++) {
+      String nome = data[i]["nome"];
+      /* String nome = data[i]["nome"];
+      String email = data[i]["email"];
+      String celular = data[i]["celular"];
+      int id = data[i]["id"];
+      int idCrianca = data[i]["id_crianca"];
+      Responsavel movie = new Responsavel(id, nome, email, celular, idCrianca);*/
+      Responsavel resp = new Responsavel(nome);
+      myList.add(resp);
+    }
+
+    return myList;
+  }
+*/
+  addResp(Responsavel myNewResp, String nomeColl) async {
+    await prepareConnection();
+    myColl = await db.collection(nomeColl);
+    await myColl.save({
+      "id": myNewResp.id,
+      "nome": myNewResp.nome,
+      "email": myNewResp.email,
+      "celular": myNewResp.celular,
+      "id_crianca": myNewResp.id_crianca
+    });
+    /*
+    await myColl.save({
+      "id": 4,
+      "nome": "Paulinho",
+      "idCrianca": 4,
+      "telefone":
+          "(19)99999-9999" // id: 30.0, nome: Paulo, idCrianca: 3.0, telefone: (19)99999-9999}]
+    });*/
+
+    print('saved');
+    db.close();
+  }
+
+  getSize(String nomeColl) {
+    prepareConnection();
+    myColl = db.collection(nomeColl);
+    var mySize = myColl.count();
+
+    db.close();
+    return mySize.toString();
+  }
+
+  removeResp() async {
+    //REMOVE
+    prepareConnection();
+    await myColl.remove(await myColl.findOne(where.eq("id", 30.0)));
+    print('Removed');
+    db.close();
+  }
+
+  updateResp() async {
+    //UPDATE
+    prepareConnection();
+    await myColl.update(await myColl.findOne(where.eq("id", 30.0)), {
+      r'$set': {'telefone': '(19)88888-8888'}
+    });
+
+    print('updated!');
+    db.close();
+  }
+
+  closeConnection() async {
+    //if (db.state == ConnectionState.active)
+    await db.close();
+  }
+
+  // var resp = await myColl.find().toList();
+  //print(resp);
+
+  //var specificResp = await myColl.find(where.eq('nome', 'Paulo')).toList();
+  //print(specificResp);
+
+  // print(await myColl.findOne(where.eq("id", 30.0)));*/
+
+}
+
+/*
+---------------------------------------------------------------------
+
+main(List<String> arguments) async {
+  var server = await HttpServer.bind('127.0.0.1', 8080);
+  //Db db = Db("mongodb://localhost:27017/Unique");
+  Db db =
+      Db("mongodb+srv://arianepaulabarros:raizesaereas18173@cluster-unique-shard-00-00.cfl1u.mongodb.net:27017,cluster-unique-shard-00-01.cfl1u.mongodb.net:27017,cluster-unique-shard-00-02.cfl1u.mongodb.net:27017/Unique?ssl=true&replicaSet=atlas-j4mn6c-shard-0&authSource=admin&retryWrites=true&w=majority")
+          .authSourceDb;
+  await db.open();
+  var myCluster = Mongo;
   print('Connected to database');
 
   DbCollection myColl = db.collection("Responsaveis");
+
+
 
   server
       .transform(HttpBodyHandler())
@@ -103,3 +248,8 @@ main(List<String> arguments) async {
 
   //await db.close();
 }
+
+
+
+
+*/

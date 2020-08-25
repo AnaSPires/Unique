@@ -1,3 +1,5 @@
+//model
+
 import 'dart:io';
 import 'package:mongo_dart/mongo_dart.dart';
 import 'package:http_server/http_server.dart';
@@ -6,14 +8,16 @@ import '../server.dart' as myServer;
 import '../dart_mongo.dart' as dart_mongo;
 
 class Responsavel {
-  var myObj;
-/*
-  Responsavel(int id, String nome, String email, String celular, int id_crianca) {
-    myObj = [id, nome, email, celular, id_crianca];
-  }*/
+  int id, id_crianca;
+  String nome, email, celular;
 
-  Responsavel(String nome) {
-    myObj = [nome];
+  Responsavel(
+      int idP, String nomeP, String emailP, String celularP, int id_criancaP) {
+    id = idP;
+    nome = nomeP;
+    email = emailP;
+    celular = celularP;
+    id_crianca = id_criancaP;
   }
 }
 /*
