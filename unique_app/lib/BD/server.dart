@@ -1,12 +1,5 @@
-import 'dart:io';
-import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:mongo_dart/mongo_dart.dart';
-import 'package:http_server/http_server.dart';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:uniqueapp/BD/models/resp_model.dart';
-
-import '../BD/dart_mongo.dart' as dart_mongo;
 
 //MAIN PARA TESTE
 /*main(List<String> args) {
@@ -33,17 +26,19 @@ class MyServer {
   DbCollection myColl;
 
   MyServer() {
-    db = Db(
-        "mongodb+srv://arianepaulabarros:raizesaereas18173@cluster-unique-shard-00-00.cfl1u.mongodb.net:27017,cluster-unique-shard-00-01.cfl1u.mongodb.net:27017,cluster-unique-shard-00-02.cfl1u.mongodb.net:27017/Unique?ssl=true&replicaSet=atlas-j4mn6c-shard-0&authSource=admin&retryWrites=true&w=majority");
-   
-   
+    db = Db.pool([
+      "mongodb://arianepaulabarros:raizesaereas18173@cluster-unique-shard-00-00.cfl1u.mongodb.net:27017/Unique?ssl=true&replicaSet=atlas-j4mn6c-shard-0&authSource=admin&retryWrites=true&w=majority",
+      "mongodb://arianepaulabarros:raizesaereas18173@cluster-unique-shard-00-01.cfl1u.mongodb.net:27017/Unique?ssl=true&replicaSet=atlas-j4mn6c-shard-0&authSource=admin&retryWrites=true&w=majority",
+      "mongodb://arianepaulabarros:raizesaereas18173@cluster-unique-shard-00-02.cfl1u.mongodb.net:27017/Unique?ssl=true&replicaSet=atlas-j4mn6c-shard-0&authSource=admin&retryWrites=true&w=majority"
+    ]);
+
     //    .authSourceDb;
     // Db("mongodb://localhost:27017/Unique");
   }
 
   prepareConnection() async {
     //server = await HttpServer.bind('127.0.0.1', 8080);
-    await db.open();
+    await db.open(secure: true);
     print('Connected to database');
   }
 
@@ -56,6 +51,14 @@ class MyServer {
     //var myRespS = myList.first.toString();
     db.close();
     return resp;
+  }
+
+  findOneObj(String collName, String email) async {
+    this.prepareConnection();
+    myColl = db.collection(collName);
+    var myResp = await myColl.findOne(where.eq("email", email));
+
+    return myResp;
   }
 
 /*
@@ -79,7 +82,14 @@ class MyServer {
   addResp(Responsavel myNewResp, String nomeColl) async {
     await prepareConnection();
     myColl = await db.collection(nomeColl);
-    await myColl.save({
+    /* await myColl.save({
+      "id": myNewResp.id,
+      "nome": myNewResp.nome,
+      "email": myNewResp.email,
+      "celular": myNewResp.celular,
+      "id_crianca": myNewResp.id_crianca
+    });*/
+    await myColl.insert({
       "id": myNewResp.id,
       "nome": myNewResp.nome,
       "email": myNewResp.email,

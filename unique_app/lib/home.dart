@@ -40,47 +40,6 @@ class _HomeState extends State<Home> {
             myData,
             style: TextStyle(fontSize: 20.0),
           ),
-          new FutureBuilder<List<Responsavel>>(
-              future: getData(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return new ListView.builder(
-                      itemCount: snapshot.data.length,
-                      itemBuilder: (context, index) {
-                        return new Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              new Text(snapshot.data[index].nome,
-                                  style: new TextStyle(
-                                      fontWeight: FontWeight.bold)),
-                              new Divider()
-                            ]);
-                      });
-                }
-              })
         ]));
-  }
-
-  Future<List<Responsavel>> getData() async {
-    MyServer myServer = new MyServer();
-    //final response = await http.get('http://177.194.125.214/32:8000/resp');
-    List listResp = myServer.getData("Responsavel");
-    List<Responsavel> respList = createRespList(listResp);
-    for (int i = 0; i < respList.length; i++) myData += respList[i].toString();
-  }
-
-  List<Responsavel> createRespList(List data) {
-    List<Responsavel> myList = new List();
-    for (int i = 0; i < data.length; i++) {
-      String nome = data[i]["nome"];
-      String email = data[i]["email"];
-      String celular = data[i]["celular"];
-      int id = data[i]["id"];
-      int idCrianca = data[i]["id_crianca"];
-      Responsavel resp = new Responsavel(id, nome, email, celular, idCrianca);
-      myList.add(resp);
-    }
-
-    return myList;
   }
 }
