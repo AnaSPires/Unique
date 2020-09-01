@@ -20,6 +20,8 @@ class Cadastro extends StatefulWidget {
   _CadastroState createState() => _CadastroState();
 }
 
+enum boolean { falso, verdadeiro }
+
 class DecoratedTabBar extends StatelessWidget implements PreferredSizeWidget {
   DecoratedTabBar({@required this.tabBar, @required this.decoration});
 
@@ -70,9 +72,10 @@ class _CadastroState extends State<Cadastro>
     //var queryData = MediaQueryData(,)
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Container(
+        body:  Container(
             color: Colors.white,
-            child: Stack(children: <Widget>[
+//            child: SingleChildScrollView(
+        child:Stack(children: <Widget>[
               Padding(
                 padding: EdgeInsets.only(top: 0.0),
                 child: DefaultTabController(
@@ -116,9 +119,12 @@ class _CadastroState extends State<Cadastro>
                           ),
                         ),
                         body: TabBarView(children: <Widget>[
+
                           Padding(
                               padding: EdgeInsets.only(top: 20.0, bottom: 90.0),
-                              child: Container(
+                              child: SingleChildScrollView(
+                                  child:Container(
+                                    height: 320.0,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(28.0),
                                     gradient: LinearGradient(
@@ -129,7 +135,8 @@ class _CadastroState extends State<Cadastro>
                                           ariMeuAmor
                                         ]),
                                   ),
-                                  child: Stack(children: <Widget>[
+                                  child: SingleChildScrollView(
+                                      child: Stack(children: <Widget>[
                                     Padding(
                                       padding: EdgeInsets.only(
                                           top: 25.0, left: 35.0, right: 35.0),
@@ -350,9 +357,40 @@ class _CadastroState extends State<Cadastro>
                                                     color: Colors.white,
                                                     fontWeight:
                                                         FontWeight.bold)),
-                                          )
-                                        ])),
-                                  ]))),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: deviceData.size.height / 19.0,
+                                                left: deviceData.size.width / 107.24,
+                                                right: deviceData.size.width / 105.24),
+                                            child: Text("Sou menor de 18 anos",
+                                                      style: TextStyle(fontSize: 18.0, color: Colors.white)),
+
+                                          ),
+                                          ListTile(
+                                            title: const Text('Sim'),
+                                            leading: new Radio(
+                                              value: 0,
+                                              groupValue: 0,activeColor: Colors.white,
+                                              onChanged: (val){
+                                                responsavel = val;
+                                              },
+                                            ),
+                                          ),
+                                          ListTile(
+                                            title: const Text('Não'),
+                                            leading: new Radio(
+                                              value: 2,
+                                              groupValue: 0,activeColor: Colors.white,
+                                              onChanged: (val){
+                                                responsavel = val;
+                                              },
+                                            ),
+                                          ),
+                                        ]),
+
+                                    ),
+                                  ]))))),
                           Stack(children: [Text("tchau")])
                         ])),
                   ),
@@ -388,26 +426,6 @@ class _CadastroState extends State<Cadastro>
                       decoration: TextDecoration.none,
                       fontSize: 40.0,
                       fontWeight: FontWeight.bold),
-                )),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                    top: deviceData.size.width / 0.77,
-                    left: deviceData.size.width / 7.24,
-                    right: deviceData.size.width / 5.24),
-                child: Container(
-                    child: CheckboxListTile(
-                  title: Text("Sou menor de 18 anos",
-                      style: TextStyle(fontSize: 18.0, color: Colors.white)),
-                  checkColor: Colors.white,
-                  value: responsavel,
-                  onChanged: (newValue) {
-                    setState(() {
-                      responsavel = newValue;
-                    });
-                  },
-                  controlAffinity:
-                      ListTileControlAffinity.leading, //  <-- leading Checkbox
                 )),
               ),
 
@@ -461,6 +479,10 @@ class _CadastroState extends State<Cadastro>
         2, "Teste de inclusão", "teste@gmail.com", "(99)99999-9999", 1);
     myServer.addResp(myNewResp, "Responsavel");
   }
+}
+
+class AlgumaCoisa {
+
 }
 
 //Container(
