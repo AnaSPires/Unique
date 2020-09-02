@@ -1,14 +1,5 @@
-import 'dart:async';
-import 'dart:convert';
-import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:json_annotation/json_annotation.dart';
-import 'package:uniqueapp/BD/models/resp_model.dart';
-import 'package:uniqueapp/menu.dart';
-import './index_setter.dart';
-import 'package:convert/convert.dart';
-import 'package:http/http.dart' as http;
-import 'BD/server.dart';
 
 void main() {
   runApp(MaterialApp(title: "Home", home: Home()));
