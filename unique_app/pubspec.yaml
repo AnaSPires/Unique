@@ -28,6 +28,8 @@ dependencies:
   axios: ^0.0.1
   http: ^0.11.3+16
   json_annotation: ^3.0.1
+  csv: ^4.0.3
+  path_provider: ^1.6.17
 
 dev_dependencies:
   flutter_test:
