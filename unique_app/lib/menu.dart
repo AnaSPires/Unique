@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:uniqueapp/home.dart';
+import 'package:uniqueapp/myTeste.dart';
 
 
 void main() {
@@ -196,7 +197,7 @@ class _MenuState extends State<Menu> {
   }
   void _navigateToHome(){
     Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (BuildContext context)=> Home())
+        MaterialPageRoute(builder: (BuildContext context)=> MyTeste())//Home())
     );
   }
 
