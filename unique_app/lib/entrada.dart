@@ -10,7 +10,7 @@ import 'package:flutter/rendering.dart';
 import 'package:uniqueapp/menu.dart';
 import 'package:uniqueapp/login.dart';
 import 'package:uniqueapp/cadastro.dart';
-import 'BD/server.dart' as myServer;
+//import 'BD/server.dart' as myServer;
 
 void main() {
   runApp(MaterialApp(title: "Unique", home: Entrada()));

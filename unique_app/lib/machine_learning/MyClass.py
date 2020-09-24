@@ -2,18 +2,17 @@
 import numpy as np
 import pandas as pd
 from sklearn import linear_model
-import sklearn  
+import sklearn
 from sklearn.utils import shuffle
 import matplotlib.pyplot as plt
 from matplotlib import style
 import pickle
-import scipy.io as sio
-import scipy
+
 
 def calcula():
-    data = pd.read_csv (r'C:\Users\Cliente Preferencial\Documents\GitHub\Unique\unique_app\lib\machine_learning\student-mat.csv', sep=";")
-    #print (df)
-    #data = pd.read_csv(sio.loadmat("unique_app/lib/machine_learning/student-mat.csv"), sep=";")
+    style.use("ggplot")
+
+    data = pd.read_csv(r"C:\Users\Cliente Preferencial\Documents\GitHub\Unique\unique_app\lib\machine_learning\student-mat.csv", sep=";")
 
     predict = "G3"
 
@@ -54,13 +53,14 @@ def calcula():
     predicted= linear.predict(x_test)
     for x in range(len(predicted)):
         print(predicted[x], x_test[x], y_test[x])
-  
-    return "Conexão com python realizada com sucesso!"
+
 
     # Drawing and plotting model
-    #plot = "failures"
-    #plt.scatter(data[plot], data["G3"])
-    #plt.legend(loc=4)
-    #plt.xlabel(plot)
-    #plt.ylabel("Final Grade")
-    #plt.show()
+    plot = "failures"
+    plt.scatter(data[plot], data["G3"])
+    plt.legend(loc=4)
+    plt.xlabel(plot)
+    plt.ylabel("Final Grade")
+    plt.show()
+
+    

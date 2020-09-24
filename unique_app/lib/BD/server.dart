@@ -37,13 +37,13 @@ class MyServer {
 
   addResp(Responsavel myNewResp, String nomeColl) async {
     await prepareConnection();
-    myColl = await db.collection(nomeColl);
+    myColl =  db.collection(nomeColl);   //await
     await myColl.insert({
       "id": myNewResp.id,
       "nome": myNewResp.nome,
       "email": myNewResp.email,
       "celular": myNewResp.celular,
-      "id_crianca": myNewResp.id_crianca
+      "id_crianca": myNewResp.idCrianca
     });
     print('saved');
     db.close();

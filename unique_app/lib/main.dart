@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'dart:developer';
+//import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:uniqueapp/menu.dart';
+//import 'package:uniqueapp/menu.dart';
 import 'package:uniqueapp/entrada.dart';
 
 void main() {

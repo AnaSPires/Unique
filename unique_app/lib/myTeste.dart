@@ -1,6 +1,8 @@
+//import 'dart:html';
+
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:csv/csv.dart';
+//import 'package:csv/csv.dart';
 import 'dart:io';
 import 'package:uniqueapp/machine_learning/MyClass.py' as myPython;
 
@@ -24,30 +26,13 @@ class _TesteState extends State<MyTeste> {
         color: Colors.white,
         child:
             Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-          /*Text(
-            "Aqui terá uma home",
-            style: TextStyle(fontSize: 20.0),
-          ),*/
           Text(
             "MINHA PAGINA TESTE",
             style: TextStyle(fontSize: 20.0),
           ),
-          Padding(
-            child: RaisedButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(28.0),
-                    side: BorderSide(color: Colors.transparent)),
-                onPressed: () {
-                  _diagnostico();
-                },
-                color: Colors.transparent,
-                textColor: Colors.white,
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      left: 30.0, right: 30.0, top: 10.0, bottom: 10.0),
-                  child: Text("Analisar", style: TextStyle(fontSize: 26)),
-                )),
-          ),
+          RaisedButton(onPressed: () {
+            _diagnostico();
+          }),
           Text(
             response,
             style: TextStyle(fontSize: 20.0),
@@ -67,7 +52,7 @@ class _TesteState extends State<MyTeste> {
     final directory = await getApplicationDocumentsDirectory();
     final pathOfTheFileToWrite =
         directory.path + "/machine_learning/student-mat.csv";
-    File file = await File(pathOfTheFileToWrite);
+    File file =  File(pathOfTheFileToWrite);  //await
     csv = "10;10;no;no;";
     file.writeAsString(csv);
   }
