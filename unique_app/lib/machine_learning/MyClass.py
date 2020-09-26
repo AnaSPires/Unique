@@ -11,9 +11,9 @@ import pickle
 
 def calcula():
     style.use("ggplot")
-
+    #data = pd.read_csv(r"C:\Users\Cliente Preferencial\Documents\GitHub\Unique\unique_app\lib\machine_learning\dados", sep="")
     data = pd.read_csv(r"C:\Users\Cliente Preferencial\Documents\GitHub\Unique\unique_app\lib\machine_learning\student-mat.csv", sep=";")
-
+    #predict = "dislexia"
     predict = "G3"
 
     data = data[["G1", "G2", "absences","failures", "studytime","G3"]]

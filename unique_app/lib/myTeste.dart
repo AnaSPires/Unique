@@ -45,14 +45,14 @@ class _TesteState extends State<MyTeste> {
     //    MaterialPageRoute(builder: (BuildContext context) => Menu()));
     escreverNoArquivo("meus dados");
     //chamar arquivo python para ler
-    response = myPython.calcula();
+    //response = myPython.calcula();
   }
 
   escreverNoArquivo(String csv) async {
     final directory = await getApplicationDocumentsDirectory();
     final pathOfTheFileToWrite =
         directory.path + "/machine_learning/student-mat.csv";
-    File file =  File(pathOfTheFileToWrite);  //await
+    File file = File(pathOfTheFileToWrite); //await
     csv = "10;10;no;no;";
     file.writeAsString(csv);
   }
