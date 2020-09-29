@@ -17,7 +17,7 @@ class MyTeste extends StatefulWidget {
 
 class _TesteState extends State<MyTeste> {
   //variaveis
-  var response = "Ainda não...Calculando";
+  var response = "Ainda não";
   //codigo
 
   @override
@@ -46,6 +46,7 @@ class _TesteState extends State<MyTeste> {
     escreverNoArquivo("meus dados");
     //chamar arquivo python para ler
     //response = myPython.calcula();
+    response = "PRONTO";
   }
 
   escreverNoArquivo(String csv) async {
