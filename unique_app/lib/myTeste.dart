@@ -4,7 +4,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 //import 'package:csv/csv.dart';
 import 'dart:io';
-import 'package:uniqueapp/machine_learning/MyClass.py' as myPython;
+//import 'package:uniqueapp/machine_learning/MyClass.py' as myPython;
 
 void main() {
   runApp(MaterialApp(title: "MyTeste", home: MyTeste()));
