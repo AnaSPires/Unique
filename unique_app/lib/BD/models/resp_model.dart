@@ -10,15 +10,16 @@
 class Responsavel {
   int id;
   int idCrianca;
-  String nome, email, celular;
+  String nome, email, celular, senha;
 
-  Responsavel(
-      int idP, String nomeP, String emailP, String celularP, int idCriancaP) {
-    id = idP;
-    nome = nomeP;
-    email = emailP;
-    celular = celularP;
-    idCrianca = idCriancaP;
+  Responsavel(int idP, String nomeP, String emailP, String celularP,
+      String senhaP, int idCriancaP) {
+    this.id = idP;
+    this.nome = nomeP;
+    this.email = emailP;
+    this.celular = celularP;
+    this.idCrianca = idCriancaP;
+    this.senha = senhaP;
   }
 }
 /*

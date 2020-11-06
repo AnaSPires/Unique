@@ -4,6 +4,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:uniqueapp/BD/models/resp_model.dart';
 import 'package:uniqueapp/menu.dart';
 //import 'package:uniqueapp/login.dart';
 import 'BD/server.dart';
@@ -20,6 +21,8 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   //variaveis
+  final emailValue = TextEditingController();
+  final senhaValue = TextEditingController();
   //codigo
 //
 //  startTimeout([int milliseconds]) {
@@ -97,6 +100,7 @@ class _LoginState extends State<Login> {
                       EdgeInsets.only(top: 385.0, left: 100.0, right: 100.0),
                   child: Column(children: <Widget>[
                     TextFormField(
+                      controller: emailValue,
                       style: TextStyle(
                         fontSize: 20.0,
                         height: 1.0,
@@ -224,14 +228,20 @@ class _LoginState extends State<Login> {
   }
 
   login() {
+    final email = emailValue.text;
+    final senha = senhaValue.text;
+
     MyServer myServer = new MyServer();
 
-    var myResp = myServer.findOneObj("Responsavel", "teste@gmail.com");
+    Responsavel myResp = myServer.findOneObj("Responsavel", email);    
 
     if (myResp != null) {
       //verificar se senha está certa
+      if(myResp.senha == senha)
+      if (myResp.senha == "teste") _navigateToMenu();
     } else {
       //usuario não existe
+      //impedir
     }
   }
 }

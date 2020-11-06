@@ -27,6 +27,11 @@ class DecoratedTabBar extends StatelessWidget implements PreferredSizeWidget {
 
   final TabBar tabBar;
   final BoxDecoration decoration;
+  final emailValue = TextEditingController();
+  final senhaValue = TextEditingController();
+  final nomeValue = TextEditingController();
+  final celularValue = TextEditingController();
+  final idCriancaValue = TextEditingController();
 
   @override
   Size get preferredSize => Size(100.00, 100.0);
@@ -156,27 +161,7 @@ class _CadastroState extends State<Cadastro>
                                                           38.0) //                 <--- border radius here
                                                       ))),
                                         ),
-                                        RaisedButton(
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(28.0),
-                                                side: BorderSide(
-                                                    color: Colors.transparent)),
-                                            onPressed: () {
-                                              putData();
-                                            },
-                                            color: Colors.transparent,
-                                            textColor: Colors.white,
-                                            child: Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: 30.0,
-                                                  right: 30.0,
-                                                  top: 10.0,
-                                                  bottom: 10.0),
-                                              child: Text("Bora lá",
-                                                  style:
-                                                      TextStyle(fontSize: 26)),
-                                            )),
+                                       
                                         Padding(
                                             padding: EdgeInsets.only(
                                                 top: 30.0,
@@ -499,12 +484,10 @@ class _CadastroState extends State<Cadastro>
     //int myId = int.parse(myServer.getSize("Responsavel"));
 
     Responsavel myNewResp = new Responsavel(
-        2, "Teste de inclusão", "teste@gmail.com", "(99)99999-9999", 1);
+        2, "Teste de inclusão", "teste@gmail.com", "(99)99999-9999", "teste", 1);
     myServer.addResp(myNewResp, "Responsavel");
   }
 }
-
-class AlgumaCoisa {}
 
 //Container(
 //padding: EdgeInsets.only(left: 10.0),
@@ -520,3 +503,29 @@ class AlgumaCoisa {}
 //"images/cad_down.png",
 //width: 1800.0,
 //)),
+
+/*
+
+ RaisedButton(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(28.0),
+                                                side: BorderSide(
+                                                    color: Colors.transparent)),
+                                            onPressed: () {
+                                              putData();
+                                            },
+                                            color: Colors.transparent,
+                                            textColor: Colors.white,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 30.0,
+                                                  right: 30.0,
+                                                  top: 10.0,
+                                                  bottom: 10.0),
+                                              child: Text("Bora lá",
+                                                  style:
+                                                      TextStyle(fontSize: 26)),
+                                            )),
+
+*/
