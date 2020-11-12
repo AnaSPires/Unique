@@ -5,8 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
-//import 'package:uniqueapp/menu.dart';
-//import 'package:uniqueapp/login.dart';
+import 'package:uniqueapp/menu.dart';
+import 'package:uniqueapp/login.dart';
 
 import 'BD/server.dart';
 import 'BD/models/resp_model.dart';
@@ -27,12 +27,6 @@ class DecoratedTabBar extends StatelessWidget implements PreferredSizeWidget {
 
   final TabBar tabBar;
   final BoxDecoration decoration;
-  final emailValue = TextEditingController();
-  final senhaValue = TextEditingController();
-  final nomeValue = TextEditingController();
-  final celularValue = TextEditingController();
-  final idCriancaValue = TextEditingController();
-
   @override
   Size get preferredSize => Size(100.00, 100.0);
 
@@ -51,6 +45,13 @@ class _CadastroState extends State<Cadastro>
     with SingleTickerProviderStateMixin {
   //variaveis
   //codigo
+  final emailController = TextEditingController();
+  final senhaController = TextEditingController();
+  final nomeController = TextEditingController();
+  final sobrenomeController = TextEditingController();
+  final celularController = TextEditingController();
+  final idCriancaController = TextEditingController();
+  final dataNascimentoController = TextEditingController();
 
   bool responsavel = false;
 
@@ -161,7 +162,6 @@ class _CadastroState extends State<Cadastro>
                                                           38.0) //                 <--- border radius here
                                                       ))),
                                         ),
-                                       
                                         Padding(
                                             padding: EdgeInsets.only(
                                                 top: 30.0,
@@ -169,6 +169,7 @@ class _CadastroState extends State<Cadastro>
                                                 right: 50.0),
                                             child: Column(children: <Widget>[
                                               TextFormField(
+                                                controller: nomeController,
                                                 style: TextStyle(
                                                   fontSize: 17.0,
                                                   height: 1.0,
@@ -212,6 +213,7 @@ class _CadastroState extends State<Cadastro>
                                                 right: 50.0),
                                             child: Column(children: <Widget>[
                                               TextFormField(
+                                                controller: sobrenomeController,
                                                 style: TextStyle(
                                                   fontSize: 17.0,
                                                   height: 1.0,
@@ -255,6 +257,8 @@ class _CadastroState extends State<Cadastro>
                                                 right: 50.0),
                                             child: Column(children: <Widget>[
                                               TextFormField(
+                                                controller:
+                                                    dataNascimentoController,
                                                 style: TextStyle(
                                                   fontSize: 17.0,
                                                   height: 1.0,
@@ -299,6 +303,7 @@ class _CadastroState extends State<Cadastro>
                                                 right: 50.0),
                                             child: Column(children: <Widget>[
                                               TextFormField(
+                                                controller: emailController,
                                                 style: TextStyle(
                                                   fontSize: 17.0,
                                                   height: 1.0,
@@ -343,6 +348,7 @@ class _CadastroState extends State<Cadastro>
                                               right: 50.0),
                                           child: Column(children: <Widget>[
                                             TextFormField(
+                                              controller: celularController,
                                               style: TextStyle(
                                                 fontSize: 17.0,
                                                 height: 1.0,
@@ -454,7 +460,27 @@ class _CadastroState extends State<Cadastro>
                     },
                     controlAffinity: ListTileControlAffinity
                         .leading, //  <-- leading Checkbox
-                  )))
+                  ))),
+               RaisedButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(28.0),
+                        side: BorderSide(
+                            color: Colors.transparent)),
+                    onPressed: () {
+                      putData();
+                    },
+                    color: Colors.transparent,
+                    textColor: Colors.white,
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          left: 30.0,
+                          right: 30.0,
+                          top: 10.0,
+                          bottom: 10.0),
+                      child: Text("Bora lá",
+                          style:
+                              TextStyle(fontSize: 26)),)),
 //              Padding(
 //                  padding: EdgeInsets.only(top:600.0, left: 116.21, right: 116.21),
 //                  child:
@@ -468,7 +494,7 @@ class _CadastroState extends State<Cadastro>
             ])));
   }
 
-  /*void _navigateToMenu() {
+  void _navigateToMenu() {
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (BuildContext context) => Menu()));
   }
@@ -476,16 +502,29 @@ class _CadastroState extends State<Cadastro>
   void _navigateToCadastro() {
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (BuildContext context) => Menu()));
-  }*/
+  }
 
   putData() {
     MyServer myServer = new MyServer();
 
     //int myId = int.parse(myServer.getSize("Responsavel"));
+    //final dataNascimentoPreenchida = dataNascimentoController.text;
+    var nomePreenchido = nomeController.text;
+    var sobrenomePreenchido = sobrenomeController.text;
+    var celularPreenchido = celularController.text;
+    var emailPreenchido = emailController.text;
+    var senhaPreenchida = "senha123";
 
     Responsavel myNewResp = new Responsavel(
-        2, "Teste de inclusão", "teste@gmail.com", "(99)99999-9999", "teste", 1);
+        2,
+        nomePreenchido + sobrenomePreenchido,
+        emailPreenchido,
+        senhaPreenchida,
+        celularPreenchido,
+        1);
     myServer.addResp(myNewResp, "Responsavel");
+
+    _navigateToMenu();
   }
 }
 
