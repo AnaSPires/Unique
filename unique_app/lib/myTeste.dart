@@ -27,7 +27,7 @@ class _TesteState extends State<MyTeste> {
         child:
             Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
           Text(
-            "MINHA PAGINA TESTE",
+            "Transtornos de aprendizagem são problemas neurológicos que dificultam o processo de aprendizagem de leitura e escrita.  Os primeiros indícios da presença de algum desses distúrbios começam a aparecer logo na infância, quando a criança começa a ter contato com atividades que requerem habilidades de  processamento de informações, que é prejudicado por essas disfunções.",
             style: TextStyle(fontSize: 20.0),
           ),
           RaisedButton(onPressed: () {
@@ -52,9 +52,9 @@ class _TesteState extends State<MyTeste> {
   escreverNoArquivo(String csv) async {
     final directory = await getApplicationDocumentsDirectory();
     final pathOfTheFileToWrite =
-        directory.path + "/machine_learning/student-mat.csv";
+        directory.path + "/machine_learning/dados.csv";
     File file = File(pathOfTheFileToWrite); //await
-    csv = "10;10;no;no;";
+    csv = "N;N;S;N;9;3;B;0;0;0;0";
     file.writeAsString(csv);
   }
 }

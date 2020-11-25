@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:uniqueapp/menu.dart';
-import 'package:uniqueapp/login.dart';
+//import 'package:uniqueapp/login.dart';
 
 import 'BD/server.dart';
 import 'BD/models/resp_model.dart';
@@ -405,7 +405,7 @@ class _CadastroState extends State<Cadastro>
                                           ]),
                                         ),
                                       ]))))),
-                          Stack(children: [Text("tchau")])
+                         // Stack(children: [Text("tchau")])
                         ])),
                   ),
                 ),
@@ -498,11 +498,11 @@ class _CadastroState extends State<Cadastro>
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (BuildContext context) => Menu()));
   }
-
+/*
   void _navigateToCadastro() {
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (BuildContext context) => Menu()));
-  }
+  }*/
 
   putData() {
     MyServer myServer = new MyServer();
