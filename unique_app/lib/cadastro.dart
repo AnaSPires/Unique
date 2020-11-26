@@ -47,6 +47,22 @@ class _CadastroState extends State<Cadastro>
   //variaveis
   //codigo
 
+  // Declare this variable
+  int selectedRadio;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedRadio = 0;
+  }
+
+// Changes the selected value on 'onChanged' click on each radio button
+  setSelectedRadio(int val) {
+    setState(() {
+      selectedRadio = val;
+    });
+  }
+
   bool responsavel = false;
 
 //  final List<Tab> myTabs = <Tab>[
@@ -124,7 +140,7 @@ class _CadastroState extends State<Cadastro>
                               padding: EdgeInsets.only(top: 20.0, bottom: 90.0),
                               child: SingleChildScrollView(
                                   child:Container(
-                                    height: 320.0,
+                                    height: 290.0,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(28.0),
                                     gradient: LinearGradient(
@@ -154,26 +170,7 @@ class _CadastroState extends State<Cadastro>
                                                       38.0) //                 <--- border radius here
                                                   ))),
                                     ),
-                                    RaisedButton(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(28.0),
-                                            side: BorderSide(
-                                                color: Colors.transparent)),
-                                        onPressed: () {
-                                          putData();
-                                        },
-                                        color: Colors.transparent,
-                                        textColor: Colors.white,
-                                        child: Padding(
-                                          padding: EdgeInsets.only(
-                                              left: 30.0,
-                                              right: 30.0,
-                                              top: 10.0,
-                                              bottom: 10.0),
-                                          child: Text("Bora lá",
-                                              style: TextStyle(fontSize: 26)),
-                                        )),
+
                                     Padding(
                                         padding: EdgeInsets.only(
                                             top: 30.0, left: 50.0, right: 50.0),
@@ -363,35 +360,302 @@ class _CadastroState extends State<Cadastro>
                                                 top: deviceData.size.height / 19.0,
                                                 left: deviceData.size.width / 107.24,
                                                 right: deviceData.size.width / 105.24),
-                                            child: Text("Sou menor de 18 anos",
+                                            child: Text("Tem menos de 18 anos de idade?",
                                                       style: TextStyle(fontSize: 18.0, color: Colors.white)),
 
                                           ),
-                                          ListTile(
-                                            title: const Text('Sim'),
-                                            leading: new Radio(
-                                              value: 0,
-                                              groupValue: 0,activeColor: Colors.white,
-                                              onChanged: (val){
-                                                responsavel = val;
-                                              },
-                                            ),
+
+                                          RadioListTile(
+                                            value: 1,
+                                            groupValue: selectedRadio,
+                                            title: Text("Sim"),
+                                            onChanged: (val) {
+                                              print("Radio Tile pressed $val");
+                                              setSelectedRadio(val);
+                                            },
+                                            activeColor: Colors.white,
+                                            selected: true,
                                           ),
-                                          ListTile(
-                                            title: const Text('Não'),
-                                            leading: new Radio(
-                                              value: 2,
-                                              groupValue: 0,activeColor: Colors.white,
-                                              onChanged: (val){
-                                                responsavel = val;
-                                              },
-                                            ),
+                                          RadioListTile(
+                                            value: 2,
+                                            groupValue: selectedRadio,
+                                            title: Text("Não"),
+                                            onChanged: (val) {
+                                              print("Radio Tile pressed $val");
+                                              setSelectedRadio(val);
+                                            },
+                                            activeColor: Colors.white,
+                                            selected: true,
                                           ),
+//                                          ListTile(
+//                                            title: const Text('Sim'),
+//                                            leading: new Radio(
+//                                              value: 0,
+//                                              groupValue: 0,activeColor: Colors.white,
+//                                              onChanged: (val){
+//                                                responsavel = val;
+//                                              },
+//                                            ),
+//                                          ),
+//                                          ListTile(
+//                                            title: const Text('Não'),
+//                                            leading: new Radio(
+//                                              value: 2,
+//                                              groupValue: 0,activeColor: Colors.white,
+//                                              onChanged: (val){
+//                                                responsavel = val;
+//                                              },
+//                                            ),
+//                                          ),
                                         ]),
 
                                     ),
                                   ]))))),
-                          Stack(children: [Text("tchau")])
+                          Padding(
+                              padding: EdgeInsets.only(top: 20.0, bottom: 90.0),
+                              child: SingleChildScrollView(
+                                  child:Container(
+                                      height: 290.0,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(28.0),
+                                        gradient: LinearGradient(
+                                            begin: Alignment.topRight,
+                                            end: Alignment.topLeft,
+                                            colors: [
+                                              lindaDoMeuCoracao,
+                                              ariMeuAmor
+                                            ]),
+                                      ),
+                                      child: SingleChildScrollView(
+                                          child: Stack(children: <Widget>[
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: 25.0, left: 35.0, right: 35.0),
+                                              child: Container(
+                                                  width: 262.0,
+                                                  height: 52.0,
+                                                  decoration: BoxDecoration(
+                                                      shape: BoxShape.rectangle,
+                                                      border: Border.all(
+                                                        width: 5.0,
+                                                        color: Colors.white,
+                                                      ),
+                                                      borderRadius: BorderRadius.all(
+                                                          Radius.circular(
+                                                              38.0) //                 <--- border radius here
+                                                      ))),
+                                            ),
+
+                                            Padding(
+                                                padding: EdgeInsets.only(
+                                                    top: 30.0, left: 50.0, right: 50.0),
+                                                child: Column(children: <Widget>[
+                                                  TextFormField(
+                                                    style: TextStyle(
+                                                      fontSize: 17.0,
+                                                      height: 1.0,
+                                                    ),
+                                                    decoration: InputDecoration(
+                                                        border: InputBorder.none,
+                                                        contentPadding:
+                                                        EdgeInsets.all(5.0),
+                                                        labelText: 'Nome',
+                                                        labelStyle: TextStyle(
+                                                            fontSize: 18.0,
+                                                            height: 1.0,
+                                                            color: Colors.white,
+                                                            fontWeight:
+                                                            FontWeight.bold)),
+                                                  )
+                                                ])),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: 87.0, left: 35.0, right: 35.0),
+                                              child: Container(
+                                                  width: 262.0,
+                                                  height: 52.0,
+                                                  decoration: BoxDecoration(
+                                                      shape: BoxShape.rectangle,
+                                                      border: Border.all(
+                                                        width: 5.0,
+                                                        color: Colors.white,
+                                                      ),
+                                                      borderRadius: BorderRadius.all(
+                                                          Radius.circular(
+                                                              38.0) //                 <--- border radius here
+                                                      ))),
+                                            ),
+                                            Padding(
+                                                padding: EdgeInsets.only(
+                                                    top: 92.0, left: 50.0, right: 50.0),
+                                                child: Column(children: <Widget>[
+                                                  TextFormField(
+                                                    style: TextStyle(
+                                                      fontSize: 17.0,
+                                                      height: 1.0,
+                                                    ),
+                                                    decoration: InputDecoration(
+                                                        border: InputBorder.none,
+                                                        contentPadding:
+                                                        EdgeInsets.all(5.0),
+                                                        labelText: 'Sobrenome',
+                                                        labelStyle: TextStyle(
+                                                            fontSize: 18.0,
+                                                            height: 1.0,
+                                                            color: Colors.white,
+                                                            fontWeight:
+                                                            FontWeight.bold)),
+                                                  )
+                                                ])),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: 149.0, left: 35.0, right: 35.0),
+                                              child: Container(
+                                                  width: 262.0,
+                                                  height: 52.0,
+                                                  decoration: BoxDecoration(
+                                                      shape: BoxShape.rectangle,
+                                                      border: Border.all(
+                                                        width: 5.0,
+                                                        color: Colors.white,
+                                                      ),
+                                                      borderRadius: BorderRadius.all(
+                                                          Radius.circular(
+                                                              38.0) //                 <--- border radius here
+                                                      ))),
+                                            ),
+                                            Padding(
+                                                padding: EdgeInsets.only(
+                                                    top: 154.0,
+                                                    left: 50.0,
+                                                    right: 50.0),
+                                                child: Column(children: <Widget>[
+                                                  TextFormField(
+                                                    style: TextStyle(
+                                                      fontSize: 17.0,
+                                                      height: 1.0,
+                                                    ),
+                                                    decoration: InputDecoration(
+                                                        border: InputBorder.none,
+                                                        contentPadding:
+                                                        EdgeInsets.all(5.0),
+                                                        labelText: 'Data de Nascimento',
+                                                        labelStyle: TextStyle(
+                                                            fontSize: 18.0,
+                                                            height: 1.0,
+                                                            color: Colors.white,
+                                                            fontWeight:
+                                                            FontWeight.bold)),
+                                                  )
+                                                ])),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: 211.0, left: 35.0, right: 35.0),
+                                              child: Container(
+                                                  width: 262.0,
+                                                  height: 52.0,
+                                                  decoration: BoxDecoration(
+                                                      shape: BoxShape.rectangle,
+                                                      border: Border.all(
+                                                        width: 5.0,
+                                                        color: Colors.white,
+                                                      ),
+                                                      borderRadius: BorderRadius.all(
+                                                          Radius.circular(
+                                                              38.0) //                 <--- border radius here
+                                                      ))),
+                                            ),
+                                            Padding(
+                                                padding: EdgeInsets.only(
+                                                    top: 216.0,
+                                                    left: 50.0,
+                                                    right: 50.0),
+                                                child: Column(children: <Widget>[
+                                                  TextFormField(
+                                                    style: TextStyle(
+                                                      fontSize: 17.0,
+                                                      height: 1.0,
+                                                    ),
+                                                    decoration: InputDecoration(
+                                                        border: InputBorder.none,
+                                                        contentPadding:
+                                                        EdgeInsets.all(5.0),
+                                                        labelText: 'Email',
+                                                        labelStyle: TextStyle(
+                                                            fontSize: 18.0,
+                                                            height: 1.0,
+                                                            color: Colors.white,
+                                                            fontWeight:
+                                                            FontWeight.bold)),
+                                                  )
+                                                ])),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: 273.0, left: 35.0, right: 35.0),
+                                              child: Container(
+                                                  width: 262.0,
+                                                  height: 52.0,
+                                                  decoration: BoxDecoration(
+                                                      shape: BoxShape.rectangle,
+                                                      border: Border.all(
+                                                        width: 5.0,
+                                                        color: Colors.white,
+                                                      ),
+                                                      borderRadius: BorderRadius.all(
+                                                          Radius.circular(
+                                                              38.0) //                 <--- border radius here
+                                                      ))),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: 278.0,
+                                                  left: 50.0,
+                                                  right: 50.0,
+                                              bottom:30.0),
+                                              child: Column(children: <Widget>[
+                                                TextFormField(
+                                                  style: TextStyle(
+                                                    fontSize: 17.0,
+                                                    height: 1.0,
+                                                  ),
+                                                  decoration: InputDecoration(
+                                                      border: InputBorder.none,
+                                                      contentPadding:
+                                                      EdgeInsets.all(5.0),
+                                                      labelText:
+                                                      'Telefone',
+                                                      labelStyle: TextStyle(
+                                                          fontSize: 18.0,
+                                                          height: 1.0,
+                                                          color: Colors.white,
+                                                          fontWeight:
+                                                          FontWeight.bold)),
+                                                ),
+
+//                                          ListTile(
+//                                            title: const Text('Sim'),
+//                                            leading: new Radio(
+//                                              value: 0,
+//                                              groupValue: 0,activeColor: Colors.white,
+//                                              onChanged: (val){
+//                                                responsavel = val;
+//                                              },
+//                                            ),
+//                                          ),
+//                                          ListTile(
+//                                            title: const Text('Não'),
+//                                            leading: new Radio(
+//                                              value: 2,
+//                                              groupValue: 0,activeColor: Colors.white,
+//                                              onChanged: (val){
+//                                                responsavel = val;
+//                                              },
+//                                            ),
+//                                          ),
+                                              ]),
+
+                                            ),
+                                          ]))))),
                         ])),
                   ),
                 ),
@@ -413,6 +677,15 @@ class _CadastroState extends State<Cadastro>
                     width: 2000.0,
                     child: Image.asset("images/cad_up.png", width: 2000.0)),
               ),
+          Padding(
+            padding: EdgeInsets.only(top: deviceData.size.height/1.2785),
+            child: Container(
+                padding: EdgeInsets.only(left: 10.0),
+                alignment: Alignment(1.5, -1.1),
+                width: 2000.0,
+                child: Image.asset("images/cad_down.png", width: 2000.0)),
+          ),
+
               Padding(
                 padding: EdgeInsets.only(
                     top: deviceData.size.width / 9.85,
@@ -431,7 +704,7 @@ class _CadastroState extends State<Cadastro>
 
               Padding(
                   padding:
-                      EdgeInsets.only(top: 585.0, left: 28.21, right: 34.21),
+                      EdgeInsets.only(top: 500.0, left: 28.21, right: 34.21),
                   child: Container(
                       child: CheckboxListTile(
                     title: Text("Li e aceito os Termos e Condições de Uso",
@@ -446,7 +719,69 @@ class _CadastroState extends State<Cadastro>
                     },
                     controlAffinity: ListTileControlAffinity
                         .leading, //  <-- leading Checkbox
-                  )))
+                  ))),
+          Padding(
+            padding: EdgeInsets.only(top: 550.0, left: 100.0, right: 100.0),
+            child: Container(
+                width: 330.0,
+                height: 60.0,
+                decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    gradient: LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        colors: [lindaDoMeuCoracao, ariMeuAmor]),
+                    border: Border.all(width: 0.0),
+                    borderRadius: BorderRadius.all(Radius.circular(
+                        38.0) //                 <--- border radius here
+                    ))),
+          ),
+
+
+          Padding(
+            padding: EdgeInsets.only(top: 555.0, left: 105.5, right: 105.5),
+            child:
+          RaisedButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius:
+                  BorderRadius.circular(28.0),
+                  side: BorderSide(
+                    color: Colors.white,width: 5.0)),
+              onPressed: () {
+                putData();
+                _navigateToMenu();
+              },
+              color: Colors.white,
+              textColor: ariMeuAmor,
+              child: Padding(
+                padding: EdgeInsets.only(
+                    left: 19.0,
+                    right: 19.0,
+                    top: 11.0,
+                    bottom: 11.0),
+                child: Text("Cadastre-se",
+                    style: TextStyle(fontSize: 24)),
+              ))),
+            Padding(
+              padding: EdgeInsets.only(top: deviceData.size.height/1.1, left: deviceData.size.width/2.8),
+              child:
+              Text(
+                "Já tem cadastro?",style: TextStyle(fontSize: 15.5)
+              ),
+            ),
+          Padding(
+            padding: EdgeInsets.only(top: deviceData.size.height/1.055, left: deviceData.size.width/2.4),
+            child: InkWell(
+              onTap: () {
+              _navigateToLogin();
+              },child:
+            Text(
+                "Loge-se",style: TextStyle(color:Colors.white,fontSize: 18.0),
+            ),
+          ))
+
+//
+
 //              Padding(
 //                  padding: EdgeInsets.only(top:600.0, left: 116.21, right: 116.21),
 //                  child:
@@ -465,9 +800,9 @@ class _CadastroState extends State<Cadastro>
         MaterialPageRoute(builder: (BuildContext context) => Menu()));
   }
 
-  void _navigateToCadastro() {
+  void _navigateToLogin() {
     Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (BuildContext context) => Menu()));
+        MaterialPageRoute(builder: (BuildContext context) => Login()));
   }
 
   putData() {
