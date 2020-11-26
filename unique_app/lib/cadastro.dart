@@ -1,12 +1,12 @@
-import 'dart:async';
-import 'dart:developer';
+//import 'dart:async';
+//import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:uniqueapp/menu.dart';
-import 'package:uniqueapp/login.dart';
+//import 'package:uniqueapp/login.dart';
 
 import 'BD/server.dart';
 import 'BD/models/resp_model.dart';
@@ -27,7 +27,6 @@ class DecoratedTabBar extends StatelessWidget implements PreferredSizeWidget {
 
   final TabBar tabBar;
   final BoxDecoration decoration;
-
   @override
   Size get preferredSize => Size(100.00, 100.0);
 
@@ -46,6 +45,13 @@ class _CadastroState extends State<Cadastro>
     with SingleTickerProviderStateMixin {
   //variaveis
   //codigo
+  final emailController = TextEditingController();
+  final senhaController = TextEditingController();
+  final nomeController = TextEditingController();
+  final sobrenomeController = TextEditingController();
+  final celularController = TextEditingController();
+  final idCriancaController = TextEditingController();
+  final dataNascimentoController = TextEditingController();
 
   // Declare this variable
   int selectedRadio;
@@ -88,10 +94,10 @@ class _CadastroState extends State<Cadastro>
     //var queryData = MediaQueryData(,)
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        body:  Container(
+        body: Container(
             color: Colors.white,
 //            child: SingleChildScrollView(
-        child:Stack(children: <Widget>[
+            child: Stack(children: <Widget>[
               Padding(
                 padding: EdgeInsets.only(top: 0.0),
                 child: DefaultTabController(
@@ -135,7 +141,6 @@ class _CadastroState extends State<Cadastro>
                           ),
                         ),
                         body: TabBarView(children: <Widget>[
-
                           Padding(
                               padding: EdgeInsets.only(top: 20.0, bottom: 90.0),
                               child: SingleChildScrollView(
@@ -189,158 +194,215 @@ class _CadastroState extends State<Cadastro>
                                                     fontSize: 18.0,
                                                     height: 1.0,
                                                     color: Colors.white,
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                          )
-                                        ])),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          top: 87.0, left: 35.0, right: 35.0),
-                                      child: Container(
-                                          width: 262.0,
-                                          height: 52.0,
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.rectangle,
-                                              border: Border.all(
-                                                width: 5.0,
-                                                color: Colors.white,
-                                              ),
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(
-                                                      38.0) //                 <--- border radius here
-                                                  ))),
-                                    ),
-                                    Padding(
-                                        padding: EdgeInsets.only(
-                                            top: 92.0, left: 50.0, right: 50.0),
-                                        child: Column(children: <Widget>[
-                                          TextFormField(
-                                            style: TextStyle(
-                                              fontSize: 17.0,
-                                              height: 1.0,
-                                            ),
-                                            decoration: InputDecoration(
-                                                border: InputBorder.none,
-                                                contentPadding:
-                                                    EdgeInsets.all(5.0),
-                                                labelText: 'Sobrenome',
-                                                labelStyle: TextStyle(
-                                                    fontSize: 18.0,
-                                                    height: 1.0,
+                                                  ),
+                                                  borderRadius: BorderRadius.all(
+                                                      Radius.circular(
+                                                          38.0) //                 <--- border radius here
+                                                      ))),
+                                        ),
+                                        Padding(
+                                            padding: EdgeInsets.only(
+                                                top: 30.0,
+                                                left: 50.0,
+                                                right: 50.0),
+                                            child: Column(children: <Widget>[
+                                              TextFormField(
+                                                controller: nomeController,
+                                                style: TextStyle(
+                                                  fontSize: 17.0,
+                                                  height: 1.0,
+                                                ),
+                                                decoration: InputDecoration(
+                                                    border: InputBorder.none,
+                                                    contentPadding:
+                                                        EdgeInsets.all(5.0),
+                                                    labelText: 'Nome',
+                                                    labelStyle: TextStyle(
+                                                        fontSize: 18.0,
+                                                        height: 1.0,
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                              )
+                                            ])),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 87.0,
+                                              left: 35.0,
+                                              right: 35.0),
+                                          child: Container(
+                                              width: 262.0,
+                                              height: 52.0,
+                                              decoration: BoxDecoration(
+                                                  shape: BoxShape.rectangle,
+                                                  border: Border.all(
+                                                    width: 5.0,
                                                     color: Colors.white,
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                          )
-                                        ])),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          top: 149.0, left: 35.0, right: 35.0),
-                                      child: Container(
-                                          width: 262.0,
-                                          height: 52.0,
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.rectangle,
-                                              border: Border.all(
-                                                width: 5.0,
-                                                color: Colors.white,
-                                              ),
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(
-                                                      38.0) //                 <--- border radius here
-                                                  ))),
-                                    ),
-                                    Padding(
-                                        padding: EdgeInsets.only(
-                                            top: 154.0,
-                                            left: 50.0,
-                                            right: 50.0),
-                                        child: Column(children: <Widget>[
-                                          TextFormField(
-                                            style: TextStyle(
-                                              fontSize: 17.0,
-                                              height: 1.0,
-                                            ),
-                                            decoration: InputDecoration(
-                                                border: InputBorder.none,
-                                                contentPadding:
-                                                    EdgeInsets.all(5.0),
-                                                labelText: 'Data de Nascimento',
-                                                labelStyle: TextStyle(
-                                                    fontSize: 18.0,
-                                                    height: 1.0,
+                                                  ),
+                                                  borderRadius: BorderRadius.all(
+                                                      Radius.circular(
+                                                          38.0) //                 <--- border radius here
+                                                      ))),
+                                        ),
+                                        Padding(
+                                            padding: EdgeInsets.only(
+                                                top: 92.0,
+                                                left: 50.0,
+                                                right: 50.0),
+                                            child: Column(children: <Widget>[
+                                              TextFormField(
+                                                controller: sobrenomeController,
+                                                style: TextStyle(
+                                                  fontSize: 17.0,
+                                                  height: 1.0,
+                                                ),
+                                                decoration: InputDecoration(
+                                                    border: InputBorder.none,
+                                                    contentPadding:
+                                                        EdgeInsets.all(5.0),
+                                                    labelText: 'Sobrenome',
+                                                    labelStyle: TextStyle(
+                                                        fontSize: 18.0,
+                                                        height: 1.0,
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                              )
+                                            ])),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 149.0,
+                                              left: 35.0,
+                                              right: 35.0),
+                                          child: Container(
+                                              width: 262.0,
+                                              height: 52.0,
+                                              decoration: BoxDecoration(
+                                                  shape: BoxShape.rectangle,
+                                                  border: Border.all(
+                                                    width: 5.0,
                                                     color: Colors.white,
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                          )
-                                        ])),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          top: 211.0, left: 35.0, right: 35.0),
-                                      child: Container(
-                                          width: 262.0,
-                                          height: 52.0,
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.rectangle,
-                                              border: Border.all(
-                                                width: 5.0,
-                                                color: Colors.white,
-                                              ),
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(
-                                                      38.0) //                 <--- border radius here
-                                                  ))),
-                                    ),
-                                    Padding(
-                                        padding: EdgeInsets.only(
-                                            top: 216.0,
-                                            left: 50.0,
-                                            right: 50.0),
-                                        child: Column(children: <Widget>[
-                                          TextFormField(
-                                            style: TextStyle(
-                                              fontSize: 17.0,
-                                              height: 1.0,
-                                            ),
-                                            decoration: InputDecoration(
-                                                border: InputBorder.none,
-                                                contentPadding:
-                                                    EdgeInsets.all(5.0),
-                                                labelText: 'Email (opcional)',
-                                                labelStyle: TextStyle(
-                                                    fontSize: 18.0,
-                                                    height: 1.0,
+                                                  ),
+                                                  borderRadius: BorderRadius.all(
+                                                      Radius.circular(
+                                                          38.0) //                 <--- border radius here
+                                                      ))),
+                                        ),
+                                        Padding(
+                                            padding: EdgeInsets.only(
+                                                top: 154.0,
+                                                left: 50.0,
+                                                right: 50.0),
+                                            child: Column(children: <Widget>[
+                                              TextFormField(
+                                                controller:
+                                                    dataNascimentoController,
+                                                style: TextStyle(
+                                                  fontSize: 17.0,
+                                                  height: 1.0,
+                                                ),
+                                                decoration: InputDecoration(
+                                                    border: InputBorder.none,
+                                                    contentPadding:
+                                                        EdgeInsets.all(5.0),
+                                                    labelText:
+                                                        'Data de Nascimento',
+                                                    labelStyle: TextStyle(
+                                                        fontSize: 18.0,
+                                                        height: 1.0,
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                              )
+                                            ])),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 211.0,
+                                              left: 35.0,
+                                              right: 35.0),
+                                          child: Container(
+                                              width: 262.0,
+                                              height: 52.0,
+                                              decoration: BoxDecoration(
+                                                  shape: BoxShape.rectangle,
+                                                  border: Border.all(
+                                                    width: 5.0,
                                                     color: Colors.white,
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                          )
-                                        ])),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          top: 273.0, left: 35.0, right: 35.0),
-                                      child: Container(
-                                          width: 262.0,
-                                          height: 52.0,
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.rectangle,
-                                              border: Border.all(
-                                                width: 5.0,
-                                                color: Colors.white,
+                                                  ),
+                                                  borderRadius: BorderRadius.all(
+                                                      Radius.circular(
+                                                          38.0) //                 <--- border radius here
+                                                      ))),
+                                        ),
+                                        Padding(
+                                            padding: EdgeInsets.only(
+                                                top: 216.0,
+                                                left: 50.0,
+                                                right: 50.0),
+                                            child: Column(children: <Widget>[
+                                              TextFormField(
+                                                controller: emailController,
+                                                style: TextStyle(
+                                                  fontSize: 17.0,
+                                                  height: 1.0,
+                                                ),
+                                                decoration: InputDecoration(
+                                                    border: InputBorder.none,
+                                                    contentPadding:
+                                                        EdgeInsets.all(5.0),
+                                                    labelText:
+                                                        'Email (opcional)',
+                                                    labelStyle: TextStyle(
+                                                        fontSize: 18.0,
+                                                        height: 1.0,
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                              )
+                                            ])),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 273.0,
+                                              left: 35.0,
+                                              right: 35.0),
+                                          child: Container(
+                                              width: 262.0,
+                                              height: 52.0,
+                                              decoration: BoxDecoration(
+                                                  shape: BoxShape.rectangle,
+                                                  border: Border.all(
+                                                    width: 5.0,
+                                                    color: Colors.white,
+                                                  ),
+                                                  borderRadius: BorderRadius.all(
+                                                      Radius.circular(
+                                                          38.0) //                 <--- border radius here
+                                                      ))),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 278.0,
+                                              left: 50.0,
+                                              right: 50.0),
+                                          child: Column(children: <Widget>[
+                                            TextFormField(
+                                              controller: celularController,
+                                              style: TextStyle(
+                                                fontSize: 17.0,
+                                                height: 1.0,
                                               ),
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(
-                                                      38.0) //                 <--- border radius here
-                                                  ))),
-                                    ),
-                                    Padding(
-                                        padding: EdgeInsets.only(
-                                            top: 278.0,
-                                            left: 50.0,
-                                            right: 50.0),
-                                        child: Column(children: <Widget>[
-                                          TextFormField(
-                                            style: TextStyle(
-                                              fontSize: 17.0,
-                                              height: 1.0,
+                                              decoration: InputDecoration(
+                                                  border: InputBorder.none,
+                                                  contentPadding:
+                                                      EdgeInsets.all(5.0),
+                                                  labelText:
+                                                      'Telefone (opcional)',
+                                                  labelStyle: TextStyle(
+                                                      fontSize: 18.0,
+                                                      height: 1.0,
+                                                      color: Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.bold)),
                                             ),
                                             decoration: InputDecoration(
                                                 border: InputBorder.none,
@@ -786,9 +848,9 @@ class _CadastroState extends State<Cadastro>
 //                  padding: EdgeInsets.only(top:600.0, left: 116.21, right: 116.21),
 //                  child:
 //                  InkWell(
-//                    onTap:(){ _navigateToCadastro();},
+//                    onTap:(){ _navigateToLogin();},
 //                    child:
-//                    Text("Ainda não tem cadastro?",
+//                    Text("Já tem cadastro?",
 //                      style: TextStyle(fontSize: 16, color:Colors.deepPurple,fontWeight: FontWeight.bold),),
 //                  )
 //              ),
@@ -799,25 +861,34 @@ class _CadastroState extends State<Cadastro>
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (BuildContext context) => Menu()));
   }
-
+/*
   void _navigateToLogin() {
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (BuildContext context) => Login()));
-  }
+  }*/
 
   putData() {
     MyServer myServer = new MyServer();
 
     //int myId = int.parse(myServer.getSize("Responsavel"));
+    //final dataNascimentoPreenchida = dataNascimentoController.text;
+    var nomePreenchido = nomeController.text;
+    var sobrenomePreenchido = sobrenomeController.text;
+    var celularPreenchido = celularController.text;
+    var emailPreenchido = emailController.text;
+    var senhaPreenchida = "senha123";
 
     Responsavel myNewResp = new Responsavel(
-        2, "Teste de inclusão", "teste@gmail.com", "(99)99999-9999", 1);
+        2,
+        nomePreenchido + sobrenomePreenchido,
+        emailPreenchido,
+        senhaPreenchida,
+        celularPreenchido,
+        1);
     myServer.addResp(myNewResp, "Responsavel");
+
+    _navigateToMenu();
   }
-}
-
-class AlgumaCoisa {
-
 }
 
 //Container(
@@ -834,3 +905,29 @@ class AlgumaCoisa {
 //"images/cad_down.png",
 //width: 1800.0,
 //)),
+
+/*
+
+ RaisedButton(
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(28.0),
+                                                side: BorderSide(
+                                                    color: Colors.transparent)),
+                                            onPressed: () {
+                                              putData();
+                                            },
+                                            color: Colors.transparent,
+                                            textColor: Colors.white,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 30.0,
+                                                  right: 30.0,
+                                                  top: 10.0,
+                                                  bottom: 10.0),
+                                              child: Text("Bora lá",
+                                                  style:
+                                                      TextStyle(fontSize: 26)),
+                                            )),
+
+*/

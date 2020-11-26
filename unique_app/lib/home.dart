@@ -1,6 +1,4 @@
-import 'dart:async';
-import 'dart:convert';
-import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -13,6 +11,7 @@ import './index_setter.dart';
 import 'package:convert/convert.dart';
 import 'package:http/http.dart' as http;
 import 'BD/server.dart';
+import 'package:vertical_tabs/vertical_tabs.dart';
 
 void main() {
   runApp(MaterialApp(title: "Home", home: Home()));
@@ -97,5 +96,9 @@ class _HomeState extends State<Home> {
         },
       ),
     ));
+    //"Transtornos de aprendizagem são problemas neurológicos que dificultam o processo de aprendizagem de leitura e escrita.",
+    //"Os primeiros indícios da presença de algum desses distúrbios começam a aparecer logo na infância, quando a criança começa a ter contato com atividades que requerem habilidades de  processamento de informações, que é prejudicado por essas disfunções.",
+                         
+                         
   }
 }

@@ -1,23 +1,25 @@
 //model
 
-import 'dart:io';
-import 'package:mongo_dart/mongo_dart.dart';
-import 'package:http_server/http_server.dart';
-import '../server.dart' as myServer;
+//import 'dart:io';
+//import 'package:mongo_dart/mongo_dart.dart';
+//import 'package:http_server/http_server.dart';
+//import '../server.dart' as myServer;
 
-import '../dart_mongo.dart' as dart_mongo;
+//import '../dart_mongo.dart' as dart_mongo;
 
 class Responsavel {
-  int id, id_crianca;
-  String nome, email, celular;
+  int id;
+  int idCrianca;
+  String nome, email, celular, senha;
 
-  Responsavel(
-      int idP, String nomeP, String emailP, String celularP, int id_criancaP) {
-    id = idP;
-    nome = nomeP;
-    email = emailP;
-    celular = celularP;
-    id_crianca = id_criancaP;
+  Responsavel(int idP, String nomeP, String emailP, String celularP,
+      String senhaP, int idCriancaP) {
+    this.id = idP;
+    this.nome = nomeP;
+    this.email = emailP;
+    this.celular = celularP;
+    this.idCrianca = idCriancaP;
+    this.senha = senhaP;
   }
 }
 /*
