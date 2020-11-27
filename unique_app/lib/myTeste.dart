@@ -48,12 +48,13 @@ class _TesteState extends State<MyTeste> {
     //    MaterialPageRoute(builder: (BuildContext context) => Menu()));
     escreverNoArquivo("meus dados");
     //chamar arquivo python para ler
+    response = "se apareceu isso..deu ruim";
     final meu_array = ["N", "N", "S", "N", "9", "3", "B", "0", "0", "0", "0"];
     //response = myPython.treinar(meu_array); //passar a id do usuario
     var client = http.Client();
     try {
       client
-          .post("https://apiunique.herokuapp.com/", body: {"query": meu_array})
+          .post("https://apiunique.herokuapp.com/respostas", body: {"query": meu_array})
             ..then((response) async {
               var encodeFirst = jsonEncode(response.body);
               var data = jsonDecode(encodeFirst);
@@ -66,7 +67,6 @@ class _TesteState extends State<MyTeste> {
     }
 
     //response = await http.read('https://flutter.dev/');
-    response = "PRONTO";
   }
 
   escreverNoArquivo(String csv) async {
