@@ -1,10 +1,13 @@
 //import 'dart:html';
 
+import 'dart:convert';
+
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 //import 'package:csv/csv.dart';
 import 'dart:io';
-//import 'package:uniqueapp/machine_learning/MyClass.py' as myPython;
+import 'package:http/http.dart' as http;
+import 'package:uniqueapp/machine_learning/MyClass.py' as myPython;
 
 void main() {
   runApp(MaterialApp(title: "MyTeste", home: MyTeste()));
@@ -45,14 +48,30 @@ class _TesteState extends State<MyTeste> {
     //    MaterialPageRoute(builder: (BuildContext context) => Menu()));
     escreverNoArquivo("meus dados");
     //chamar arquivo python para ler
-    //response = myPython.calcula();
+    final meu_array = ["N", "N", "S", "N", "9", "3", "B", "0", "0", "0", "0"];
+    //response = myPython.treinar(meu_array); //passar a id do usuario
+    var client = http.Client();
+    try {
+      client
+          .post("https://apiunique.herokuapp.com/", body: {"query": meu_array})
+            ..then((response) async {
+              var encodeFirst = jsonEncode(response.body);
+              var data = jsonDecode(encodeFirst);
+              response = data;
+            });
+    } catch (e) {
+      print("Failed -> $e");
+    } finally {
+      client.close();
+    }
+
+    //response = await http.read('https://flutter.dev/');
     response = "PRONTO";
   }
 
   escreverNoArquivo(String csv) async {
     final directory = await getApplicationDocumentsDirectory();
-    final pathOfTheFileToWrite =
-        directory.path + "/machine_learning/dados.csv";
+    final pathOfTheFileToWrite = directory.path + "/machine_learning/dados.csv";
     File file = File(pathOfTheFileToWrite); //await
     csv = "N;N;S;N;9;3;B;0;0;0;0";
     file.writeAsString(csv);

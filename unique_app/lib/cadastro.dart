@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:uniqueapp/menu.dart';
-//import 'package:uniqueapp/login.dart';
+import 'package:uniqueapp/login.dart';
 
 import 'BD/server.dart';
 import 'BD/models/resp_model.dart';
@@ -198,8 +198,8 @@ class _CadastroState extends State<Cadastro>
                                                   borderRadius: BorderRadius.all(
                                                       Radius.circular(
                                                           38.0) //                 <--- border radius here
-                                                      ))),
-                                        ),
+                                                      )),
+                                        ),),
                                         Padding(
                                             padding: EdgeInsets.only(
                                                 top: 30.0,
@@ -416,7 +416,7 @@ class _CadastroState extends State<Cadastro>
                                                     color: Colors.white,
                                                     fontWeight:
                                                         FontWeight.bold)),
-                                          ),
+                                          ]),
                                           Padding(
                                             padding: EdgeInsets.only(
                                                 top: deviceData.size.height / 19.0,
@@ -469,7 +469,7 @@ class _CadastroState extends State<Cadastro>
 //                                              },
 //                                            ),
 //                                          ),
-                                        ]),
+                                    )]),
 
                                     ),
                                   ]))))),
@@ -861,11 +861,11 @@ class _CadastroState extends State<Cadastro>
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (BuildContext context) => Menu()));
   }
-/*
+
   void _navigateToLogin() {
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (BuildContext context) => Login()));
-  }*/
+  }
 
   putData() {
     MyServer myServer = new MyServer();
